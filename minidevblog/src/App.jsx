@@ -1,33 +1,45 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import React from 'react'
 import './App.css'
 
-function App() {
-  const [count, setCount] = useState(0)
+import { BrowserRouter, Routes, Route, Navigate, Form } from 'react-router-dom'
+import Home from "./pages/Home/Home";
+import Footer from "./components/Footer"
+import NavBar from "./components/NavBar";
+import About from "./pages/About/About";
+import Login from "./pages/Login/Login";
+import Register from "./pages/Register/Register";
+import CreatePost from "./pages/CreatePost/CreatePost";
+import Dashboard from "./pages/Dashboard/Dashboard";
 
-  return (
+import { AutoProvider } from './context/AuthContext'
+import { onAuthStateChanged } from 'firebase/auth'
+import { useState, useEffect } from 'react'
+import { userAutentication } from './hooks/userAutentication'
+
+
+function App(){
+  const [user, setUser ] = useState(undefined)
+  const { auth } = userAutentication()
+
+  return(
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <AutoProvider value={{ user }}>
+      <BrowserRouter>
+      <NavBar />
+      <div className='container'>
+        <Routes>
+        <Route path='/' element={<Home />}></Route>
+        <Route path='/about' element={<About />}></Route>
+        <Route path='/register' element={ <Register /> }></Route>
+        <Route path='*' element={<h1>Not Found</h1>}></Route>
+        <Route path='/login' element={<Login />}></Route>
+        <Route path='/post/create' element={<CreatePost/>}></Route>
+        <Route path='/dashboard' element={<Dashboard/>}></Route>
+        </Routes> 
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <Footer />
+      </BrowserRouter>
+    </AutoProvider>
     </>
   )
 }
