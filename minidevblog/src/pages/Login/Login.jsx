@@ -22,7 +22,7 @@ const Login = () => {
         const res = await login(user)
 
         console.table(res)
-        navigate("/post/create")
+        navigate("/")
     }
 
     useEffect(() => {
@@ -57,7 +57,7 @@ const Login = () => {
                 </label>
                 {!loading && <button className="btn">Login</button>}
                 {loading && <button className="btn" disabled>Aguarde...</button>}
-                {error && <p className="error">{error}</p>}
+                {error && <p className='error'>{error}</p>}
             </form>
         </div>
     )

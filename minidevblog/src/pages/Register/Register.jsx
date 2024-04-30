@@ -42,7 +42,8 @@ const Register = () => {
             <form onSubmit={handlerSubmit}>
                 <label>
                     <span>Nome: </span>
-                    <input type="text"
+                    <input 
+                    type="text"
                     name="displayName"
                     required
                     value={displayName}
@@ -80,7 +81,7 @@ const Register = () => {
                     placeholder="Entre com sua senha"></input>
                 </label>
                 {!loading && <button className="btn">Cadastrar</button>}
-                {!loading && <button className="btn" disabled>Aguarde...</button>}
+                {loading && <button className="btn" disabled>Aguarde...</button>}
                 {error && <p className='error'>{error}</p>}
             </form>
         </div>

@@ -1,5 +1,4 @@
-import { setLogLevel } from 'firebase/app'
-import { db } from '../firebase/config'
+import { db } from '../firebase/config';
 import {
     getAuth,
     createUserWithEmailAndPassword,
@@ -8,8 +7,6 @@ import {
     signOut
 } from 'firebase/auth'
 import { useState, useEffect } from "react"
-
-const auth = getAuth()
 
 export const userAutentication = () => {
     const [error, setError] = useState(null)
@@ -23,8 +20,6 @@ export const userAutentication = () => {
             return
         }
     }
-
-
 
     async function createUser(data) {
         checkIfIsCancelled()
@@ -66,6 +61,7 @@ export const userAutentication = () => {
     }
 
     const logout = () => {
+        
         checkIfIsCancelled()
         signOut(auth)
     }

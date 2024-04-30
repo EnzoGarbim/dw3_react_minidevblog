@@ -5,7 +5,7 @@ import styles from './About.module.css'
 const About = () => {
     return (
         <>
-        <div className={styles.About}>
+        <div className={styles.about}>
         <h2>Sobre o Blog <span>DEV</span></h2>
         <p>
             Esse é um projeto de um blog realziado com as tecnologias: 

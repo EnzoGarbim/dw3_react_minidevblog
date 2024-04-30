@@ -2,16 +2,16 @@ import React from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { userAutentication } from "../hooks/userAutentication";
 import { useAuthValue } from '../context/AuthContext'
-import styles from './NavBar.module.css'
+import styles from './Navbar.module.css'
 
 
-const NavBar = () => {
+const Navbar = () => {
     const { user } = useAuthValue()
     const { logout } = userAutentication()
     const navigate = useNavigate()
     return (
         <>
-            <nav className={styles.NavBar}>
+            <nav className={styles.navbar}>
                 <NavLink to='/' className={styles.brand}>
                     Blog <span>Dev</span>
                 </NavLink>
@@ -22,26 +22,26 @@ const NavBar = () => {
                     </li>
                     {!user && (
                         <>
-                    <li>
-                        <NavLink to='/login'
-                            className={({ isActive }) => (isActive ? styles.active : null)}>Login</NavLink>
-                    </li>
-                    <li>
-                        <NavLink to='/register'
-                            className={({ isActive }) => (isActive ? styles.active : null)}>Register</NavLink>
-                    </li>
+                            <li>
+                                <NavLink to='/login'
+                                    className={({ isActive }) => (isActive ? styles.active : null)}>Login</NavLink>
+                            </li>
+                            <li>
+                                <NavLink to='/register'
+                                    className={({ isActive }) => (isActive ? styles.active : null)}>Register</NavLink>
+                            </li>
                         </>
                     )}
                     {user && (
                         <>
-                    <li>
-                        <NavLink to='/post/create'
-                            className={({ isActive }) => (isActive ? styles.active : null)}>New Post</NavLink>
-                   </li>
-                    <li>
-                        <NavLink to='/dashboard'
-                            className={({ isActive }) => (isActive ? styles.active : null)}>Dashboard</NavLink>
-                    </li>
+                            <li>
+                                <NavLink to='/post/create'
+                                    className={({ isActive }) => (isActive ? styles.active : null)}>New Post</NavLink>
+                            </li>
+                            <li>
+                                <NavLink to='/dashboard'
+                                    className={({ isActive }) => (isActive ? styles.active : null)}>Dashboard</NavLink>
+                            </li>
                         </>
                     )}
                     <li>
@@ -59,4 +59,4 @@ const NavBar = () => {
     )
 } 
 
-export default NavBar
+export default Navbar;
